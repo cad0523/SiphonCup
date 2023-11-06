@@ -28,7 +28,7 @@ addLayers       true;
 // - to 'snap' the mesh boundary to the surface
 geometry
 {
-    DTC-scaled.stl
+    SiphonCup_0.001.stl
     {
         type triSurfaceMesh;
         name hull;
@@ -81,7 +81,7 @@ castellatedMeshControls
     features
     (
          {
-             file "DTC-scaled.eMesh";
+             file "SiphonCup_0.001.eMesh";
              level 0;
          }
     );
@@ -106,7 +106,7 @@ castellatedMeshControls
         }
     }
 
-    resolveFeatureAngle 45;
+    resolveFeatureAngle 5;
 
 
     // Region-wise refinement
@@ -135,7 +135,8 @@ castellatedMeshControls
     // section reachable from the locationInMesh is kept.
     // NOTE: This point should never be on a face, always inside a cell, even
     // after refinement.
-    locationInMesh (-0.7 0 0);
+//    locationInMesh (-0.7 0 0);
+    locationInMesh (0 0.05 0);
 
 
     // Whether any faceZones (as specified in the refinementSurfaces)

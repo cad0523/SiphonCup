@@ -5,6 +5,8 @@ cd "${0%/*}" || exit                                # Run from this directory
 
 cleanCase0
 
+rm -f system/topoSetDict
+
 # Remove surfaces and features
 rm -rf  constant/triSurface
 rm -rf constant/extendedFeatureEdgeMesh

@@ -3,40 +3,40 @@ cd "${0%/*}" || exit                                # Run from this directory
 . ${WM_PROJECT_DIR:?}/bin/tools/RunFunctions        # Tutorial run functions
 #------------------------------------------------------------------------------
 
-mkdir -p constant/triSurface
 
-# copy DTC hull surface from resources folder
-cp -f \
-    "$FOAM_TUTORIALS"/resources/geometry/DTC-scaled.stl.gz \
-    constant/triSurface/
+mkdir -p constant/triSurface
+surfaceTransformPoints -scale '(0.001 0.001 0.001)' SiphonCup.stl SiphonCup_0.001.stl
+cp SiphonCup_0.001.stl constant/triSurface/
+touch tmp.foam
 
 runApplication surfaceFeatureExtract
 
 runApplication blockMesh
 
-for i in 1 2 3 4 5 6
-do
-    runApplication -s "$i" \
-        topoSet -dict system/topoSetDict.${i}
-
-    runApplication -s "$i" \
-        refineMesh -dict system/refineMeshDict -overwrite
-done
+#for i in 1 2 3 4 5 6
+#do
+#    runApplication -s "$i" \
+#        topoSet -dict system/topoSetDict.${i}
+#    runApplication -s "$i" \
+#        refineMesh -dict system/refineMeshDict -overwrite
+#done
+runApplication topoSet -dict system/topoSetDict
+runApplication refineMesh -dict system/refineMeshDict -overwrite
 
 runApplication snappyHexMesh -overwrite
 
-restore0Dir
+#restore0Dir
 
-runApplication setFields
+#runApplication setFields
 
 # runApplication decomposePar
-runParallel -s decompose redistributePar -decompose
+#runParallel -s decompose redistributePar -decompose
 
-runParallel renumberMesh -overwrite
+#runParallel renumberMesh -overwrite
 
-runParallel $(getApplication)
+#runParallel $(getApplication)
 
 # runApplication reconstructPar
-runParallel -s reconstruct redistributePar -reconstruct
+#runParallel -s reconstruct redistributePar -reconstruct
 
 #------------------------------------------------------------------------------
