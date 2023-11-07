@@ -26,9 +26,9 @@ endTime         4000;
 
 deltaT          1;
 
-writeControl    timeStep;
+writeControl    adjustable;
 
-writeInterval   100;
+writeInterval   10;
 
 purgeWrite      0;
 

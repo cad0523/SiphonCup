@@ -44,8 +44,12 @@ boundaryField
 
     hull
     {
+        type            fixedValue;
+        value           $internalField;
+/*
         type            omegaWallFunction;
         value           $internalField;
+*/
     }
 }
 

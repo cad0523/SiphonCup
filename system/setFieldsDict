@@ -30,6 +30,7 @@ regions
             volScalarFieldValue alpha.water 1
         );
     }
+/*
     // Set patch values (using ==)
     boxToFace
     {
@@ -39,6 +40,7 @@ regions
             volScalarFieldValue alpha.water 1
         );
     }
+*/
 /*
     // Set cell values
     // (does zerogradient on boundaries)

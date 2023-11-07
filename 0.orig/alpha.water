@@ -25,15 +25,20 @@ boundaryField
     inlet
     {
         type            fixedValue;
-        value           $internalField;
+        value           uniform 1;
     }
 
     outlet
     {
+        type            fixedValue;
+        value           $internalField;
+/*
+        type            variableHeightFlowRate;
         type            variableHeightFlowRate;
         lowerBound      0;
         upperBound      1;
         value           $internalField;
+*/
     }
 
     atmosphere
@@ -45,7 +50,9 @@ boundaryField
 
     hull
     {
-        type            zeroGradient;
+        type            fixedValue;
+        value           $internalField;
+//        type            zeroGradient;
     }
 }
 

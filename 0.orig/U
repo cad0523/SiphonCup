@@ -19,7 +19,8 @@ mUmean -1.668;
 
 dimensions      [0 1 -1 0 0 0 0];
 
-internalField   uniform ($mUmean 0 0);
+//internalField   uniform ($mUmean 0 0);
+internalField   uniform (0 0 0);
 
 boundaryField
 {
@@ -33,22 +34,31 @@ boundaryField
 
     outlet
     {
+        type            fixedValue;
+        value           $internalField;
+/*
         type            outletPhaseMeanVelocity;
         alpha           alpha.water;
         Umean           $Umean;
         value           $internalField;
+*/
     }
 
     atmosphere
     {
         type            pressureInletOutletVelocity;
-        value           uniform (0 0 0);
+        value           $internalField;
+//        value           uniform (0 0 0);
     }
 
     hull
     {
+        type            fixedValue;
+        value           $internalField;
+/*
         type            movingWallVelocity;
         value           uniform (0 0 0);
+*/
     }
 }
 

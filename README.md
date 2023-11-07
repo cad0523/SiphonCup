@@ -1,5 +1,3 @@
-# SiphonCup
-- tutorials/multiphase/interFoam/RAS/DTCHull
 Reference for the Duisburg Test Case (DTC):
 Moctar, O. E., Shigunov, V., & Zorn, T. (2012).
 Duisburg test case: Post-Panamax container ship for benchmarking.
