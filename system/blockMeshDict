@@ -47,14 +47,6 @@ boundary
             (3 2 6 7)
         );
     }
-    inlet
-    {
-        type patch;
-        faces
-        (
-            (4 0 3 7)
-        );
-    }
     outlet
     {
         type patch;
@@ -71,6 +63,7 @@ boundary
             (0 1 2 3)
             (4 5 6 7)
             (1 5 6 2)
+            (4 0 3 7)
         );
     }
 );

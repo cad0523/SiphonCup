@@ -20,13 +20,6 @@ internalField   uniform 0;
 
 boundaryField
 {
-    inlet
-    {
-        type            inletOutlet;
-        value           uniform 1;
-        inletValue      uniform 1;
-    }
-
     outlet
     {
         type            inletOutlet;

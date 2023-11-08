@@ -20,12 +20,6 @@ internalField   uniform (0 0 0);
 
 boundaryField
 {
-    inlet
-    {
-        type            pressureInletOutletVelocity;
-        value           $internalField;
-    }
-
     outlet
     {
         type            pressureInletOutletVelocity;
