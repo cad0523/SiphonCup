@@ -10,7 +10,7 @@ FoamFile
     version     2.0;
     format      ascii;
     class       volScalarField;
-    object      alpha;
+    object      alpha.water;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -20,39 +20,31 @@ internalField   uniform 0;
 
 boundaryField
 {
-    #includeEtc "caseDicts/setConstraintTypes"
-
     inlet
     {
-        type            fixedValue;
+        type            inletOutlet;
         value           uniform 1;
+        inletValue      uniform 1;
     }
 
     outlet
     {
-        type            fixedValue;
+        type            inletOutlet;
         value           $internalField;
-/*
-        type            variableHeightFlowRate;
-        type            variableHeightFlowRate;
-        lowerBound      0;
-        upperBound      1;
-        value           $internalField;
-*/
+        inletValue      $internalField;
     }
 
     atmosphere
     {
-        type            inletOutlet;
-        inletValue      $internalField;
-        value           $internalField;
+        type            zeroGradient;
     }
 
     hull
     {
-        type            fixedValue;
-        value           $internalField;
-//        type            zeroGradient;
+        type           constantAlphaContactAngle;
+        theta0         80;
+        limit          gradient;
+        value          $internalField;
     }
 }
 

@@ -29,7 +29,7 @@ maxConcave 80;
 //- Minimum pyramid volume. Is absolute volume of cell pyramid.
 //  Set to a sensible fraction of the smallest cell volume expected.
 //  Set to very negative number (e.g. -1E30) to disable.
-minVol 1e-13;
+minVol 1e-10;
 
 //- Minimum quality of the tet formed by the face-centre
 //  and variable base point minimum decomposition triangles and
@@ -49,13 +49,13 @@ minTwist 0.05;
 
 //- Minimum normalised cell determinant
 //  1 = hex, <= 0 = folded or flattened illegal cell
-minDeterminant 0.001;
+minDeterminant 0.01;
 
 //- minFaceWeight (0 -> 0.5)
 minFaceWeight 0.05;
 
 //- minVolRatio (0 -> 1)
-minVolRatio 0.01;
+minVolRatio 0.1;
 
 //must be >0 for Fluent compatibility
 minTriangleTwist -1;

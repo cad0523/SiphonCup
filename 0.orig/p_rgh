@@ -20,11 +20,9 @@ internalField   uniform 0;
 
 boundaryField
 {
-    #includeEtc "caseDicts/setConstraintTypes"
-
     inlet
     {
-        type            fixedFluxPressure;
+        type            fixedValue;
         value           $internalField;
     }
 
@@ -35,14 +33,13 @@ boundaryField
 
     atmosphere
     {
-        type            totalPressure;
-        p0              uniform 0;
+        type            fixedValue;
+        value           $internalField;
     }
 
     hull
     {
         type            fixedFluxPressure;
-        value           $internalField;
     }
 }
 

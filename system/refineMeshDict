@@ -26,7 +26,6 @@ globalCoeffs
 
 patchLocalCoeffs
 {
-//    patch           outside;
     patch           patchName;
     tan1            (1 0 0);
     tan2            (0 1 0);

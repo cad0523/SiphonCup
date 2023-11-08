@@ -3,7 +3,6 @@ cd "${0%/*}" || exit                                # Run from this directory
 . ${WM_PROJECT_DIR:?}/bin/tools/RunFunctions        # Tutorial run functions
 #------------------------------------------------------------------------------
 
-
 mkdir -p constant/triSurface
 surfaceTransformPoints -scale '(0.001 0.001 0.001)' SiphonCup.stl SiphonCup_0.001.stl
 cp SiphonCup_0.001.stl constant/triSurface/
@@ -19,6 +18,8 @@ runApplication refineMesh -dict system/refineMeshDict -overwrite
 
 runApplication snappyHexMesh -overwrite
 
+runApplication checkMesh
+
 restore0Dir
 
 runApplication setFields
@@ -26,8 +27,5 @@ runApplication setFields
 runApplication renumberMesh -overwrite
 
 runApplication $(getApplication)
-
-# runApplication reconstructPar
-#runParallel -s reconstruct redistributePar -reconstruct
 
 #------------------------------------------------------------------------------

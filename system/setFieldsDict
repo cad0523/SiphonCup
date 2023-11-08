@@ -24,47 +24,20 @@ regions
     // Set cell values
     boxToCell
     {
-        box (-0.15 0.03 -0.15) (0.15 0.10 0.15);
+        box (-0.15 -0.13 -0.15) (0.15 0.00 0.15);
         fieldValues
         (
             volScalarFieldValue alpha.water 1
         );
     }
-/*
-    // Set patch values (using ==)
-    boxToFace
-    {
-        box (-0.15 0.03 -0.15) (0.15 0.10 0.15);
-        fieldValues
-        (
-            volScalarFieldValue alpha.water 1
-        );
-    }
-*/
-/*
-    // Set cell values
-    // (does zerogradient on boundaries)
     boxToCell
     {
-        box (-999 -999 -999) (999 999 0.244);
-
+        box (-0.02 -0.13 -0.02) (0.02 0.00 0.02);
         fieldValues
         (
-            volScalarFieldValue alpha.water 1
+            volScalarFieldValue alpha.water 0
         );
     }
-
-    // Set patch values (using ==)
-    boxToFace
-    {
-        box (-999 -999 -999) (999 999 0.244);
-
-        fieldValues
-        (
-            volScalarFieldValue alpha.water 1
-        );
-    }
-*/
 );
 
 
