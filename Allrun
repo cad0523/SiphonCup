@@ -4,7 +4,7 @@ cd "${0%/*}" || exit                                # Run from this directory
 #------------------------------------------------------------------------------
 
 mkdir -p constant/triSurface
-surfaceTransformPoints -scale '(0.001 0.001 0.001)' SiphonCup.stl SiphonCup_0.001.stl
+runApplication surfaceTransformPoints -scale '(0.001 0.001 0.001)' SiphonCup.stl SiphonCup_0.001.stl
 cp SiphonCup_0.001.stl constant/triSurface/
 touch tmp.foam
 

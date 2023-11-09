@@ -29,15 +29,18 @@ boundaryField
 
     atmosphere
     {
-        type            zeroGradient;
+        type            inletOutlet;
+        value           $internalField;
+        inletValue      $internalField;
     }
 
     hull
     {
-        type           constantAlphaContactAngle;
-        theta0         80;
-        limit          gradient;
-        value          $internalField;
+//        type            zeroGradient;
+        type            constantAlphaContactAngle;
+        theta0          80;
+        limit           gradient;
+        value           $internalField;
     }
 }
 
