@@ -10,36 +10,21 @@ FoamFile
     version     2.0;
     format      ascii;
     class       dictionary;
-    object      setFieldsDict;
+    object      decomposeParDict;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-defaultFieldValues
-(
-    volScalarFieldValue alpha.water 0
-);
+numberOfSubdomains 4;
 
-regions
-(
-    // Set cell values
-    boxToCell
-    {
-//        box (-0.15 -0.13 -0.15) (0.15 0.00 0.15);
-        box (-0.15 -0.13 -0.15) (0.15 0.04 0.15);
-        fieldValues
-        (
-            volScalarFieldValue alpha.water 1
-        );
-    }
-    boxToCell
-    {
-        box (-0.02 -0.13 -0.01) (0.02 0.018 0.01);
-        fieldValues
-        (
-            volScalarFieldValue alpha.water 0
-        );
-    }
-);
+method          scotch;
+/*
+numberOfSubdomains 4;
 
+method          simple;
+coeffs
+{
+    n           (2 2 1);
+}
+*/
 
 // ************************************************************************* //
