@@ -22,16 +22,19 @@ boundaryField
 {
     outlet
     {
+// inlet
 //        type            zeroGradient;
-        type            totalPressure;
-        p0              uniform 0;
+// outlet
+        type            fixedValue;
+        value           $internalField;
     }
 
     atmosphere
     {
-        type            totalPressure;
-        p0              uniform 0;
+// inlet
+        type            zeroGradient;
 /*
+// outlet
         type            fixedValue;
         value           $internalField;
 */

@@ -22,21 +22,28 @@ boundaryField
 {
     outlet
     {
+/*
+// inlet
         type            inletOutlet;
         value           $internalField;
         inletValue      $internalField;
+*/
+// outlet
+        type            zeroGradient;
     }
 
     atmosphere
     {
+// inlet
         type            inletOutlet;
         value           $internalField;
         inletValue      $internalField;
+// outlet
+//        type            zeroGradient;
     }
 
     hull
     {
-//        type            zeroGradient;
         type            constantAlphaContactAngle;
         theta0          80;
         limit           gradient;
