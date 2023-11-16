@@ -16,11 +16,13 @@ FoamFile
 
 application     interFoam;
 
-startFrom       startTime;
+//startFrom       startTime;
+startFrom       latestTime;
 
 startTime       0;
 
 stopAt          endTime;
+//stopAt          nextWrite;
 
 endTime         10;
 

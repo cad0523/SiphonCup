@@ -22,21 +22,13 @@ boundaryField
 {
     outlet
     {
-// inlet
-        type            zeroGradient;
-/*
-// outlet
         type            pressureInletOutletVelocity;
         value           $internalField;
-*/
     }
 
     atmosphere
     {
-// inlet
-//        type            zeroGradient;
-// outlet
-        type            pressureInletOutletVelocity;
+        type            pressureInletVelocity;
         value           $internalField;
     }
 

@@ -16,28 +16,23 @@ FoamFile
 
 dimensions      [1 -1 -2 0 0 0 0];
 
-internalField   uniform 0;
+internalField   uniform 0; // p_rgh
+//internalField   uniform 101325; // p
 
 boundaryField
 {
     outlet
     {
-// inlet
-//        type            zeroGradient;
-// outlet
-        type            fixedValue;
+        type            totalPressure;
+        p0              $internalField;
         value           $internalField;
     }
 
     atmosphere
     {
-// inlet
-        type            zeroGradient;
-/*
-// outlet
-        type            fixedValue;
+        type            totalPressure;
+        p0              $internalField;
         value           $internalField;
-*/
     }
 
     hull

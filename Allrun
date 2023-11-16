@@ -4,25 +4,29 @@ cd "${0%/*}" || exit                                # Run from this directory
 #------------------------------------------------------------------------------
 
 touch tmp.foam
-mkdir -p constant/triSurface
-runApplication surfaceTransformPoints -scale '(0.001 0.001 0.001)' SiphonCup.stl SiphonCup_0.001.stl
-cp SiphonCup_0.001.stl constant/triSurface/
 
+runApplication surfaceTransformPoints -scale '(0.001 0.001 0.001)' SiphonCup.stl SiphonCup_0.001.stl
+mkdir -p constant/triSurface
+cp SiphonCup_0.001.stl constant/triSurface/
 runApplication surfaceFeatureExtract
+
 runApplication blockMesh
 runApplication topoSet -dict system/topoSetDict
 runApplication refineMesh -dict system/refineMeshDict -overwrite
-runApplication snappyHexMesh -overwrite
+
+runApplication -s mesher decomposePar
+runParallel -s mesher renumberMesh -overwrite
+runParallel snappyHexMesh -overwrite
+runApplication reconstructParMesh -constant
+rm -rf processor*
 runApplication checkMesh
 
 restore0Dir
+cp -r constant/polyMesh/ 0/
 runApplication setFields
 
-#runApplication renumberMesh -overwrite
-#runApplication $(getApplication)
-
-runApplication decomposePar
-runParallel renumberMesh -overwrite
+runApplication -s solver decomposePar
+runParallel -s solver renumberMesh -overwrite
 runParallel $(getApplication)
 
 #runParallel redistributePar -reconstruct -overwrite
