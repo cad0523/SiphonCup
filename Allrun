@@ -5,15 +5,18 @@ cd "${0%/*}" || exit                                # Run from this directory
 
 touch tmp.foam
 
+# STLからｋ特徴線を抽出する
 runApplication surfaceTransformPoints -scale '(0.001 0.001 0.001)' SiphonCup.stl SiphonCup_0.001.stl
 mkdir -p constant/triSurface
 cp SiphonCup_0.001.stl constant/triSurface/
 runApplication surfaceFeatureExtract
 
+# 液相/気相空間のメッシュを作成する
 runApplication blockMesh
 runApplication topoSet -dict system/topoSetDict
 runApplication refineMesh -dict system/refineMeshDict -overwrite
 
+# 計算格子を作成する
 runApplication -s mesher decomposePar
 runParallel -s mesher renumberMesh -overwrite
 runParallel snappyHexMesh -overwrite
@@ -21,15 +24,21 @@ runApplication reconstructParMesh -constant
 rm -rf processor*
 runApplication checkMesh
 
+# 境界条件と初期値を設定する
 restore0Dir
 cp -r constant/polyMesh/ 0/
 runApplication setFields
 
+# ソルバを並列実行する
 runApplication -s solver decomposePar
+for i in $(seq 0 3); do
+    cp -r constant processor${i}
+done
 runParallel -s solver renumberMesh -overwrite
 runParallel $(getApplication)
 
+# 計算結果を統合する
 #runParallel redistributePar -reconstruct -overwrite
-runApplication reconstructPar
+runApplication reconstructPar -newTimes
 
 #------------------------------------------------------------------------------
