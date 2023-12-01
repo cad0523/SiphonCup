@@ -22,7 +22,7 @@ boundaryField
 {
     outlet
     {
-        type            zeroGradient;
+        type            advective;
 //        type            pressureInletOutletVelocity;
 //        value           $internalField;
     }
