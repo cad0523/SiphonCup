@@ -7,3 +7,4 @@ constant/extendedFeatureEdgeMesh/
 constant/polyMesh/
 constant/triSurface/
 *.stl
+*.tgz
